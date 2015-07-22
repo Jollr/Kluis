@@ -1,7 +1,7 @@
 ﻿var Input = function(dispatcher) {
 	var initialize = function() {
 		document.onkeydown = function(e) {
-			if (e.keyCode == 116 || e.keyCode == 122) { // f5 of f11
+			if (e.keyCode === 116 || e.keyCode === 122) { // f5, f11
 				return true;
 			}
 			
