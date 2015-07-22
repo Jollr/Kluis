@@ -10,6 +10,8 @@ var Dispatcher = function() {
 	};
 	
 	this.Publish = function(name, message) {
+		console.log(name);
+		console.log(message);
 		subscriptions
 			.get(name, new Immutable.List())
 			.map(function (subscribedFunction) { subscribedFunction(message); });

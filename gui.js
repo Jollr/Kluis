@@ -10,10 +10,18 @@ var Gui = function(dispatcher) {
 		elements.get(elem).show();
 	};
 	
+	
+	
+	var onNumber = function(message) {
+		$('#kluis').html('test');
+	};
+	
 	var initialize = function() {
 		show('kluis');
+		dispatcher.Subscribe('Number', onNumber);
 	};
 	
 	hideAll();
 	dispatcher.Subscribe('Initialize', initialize);
+	
 };
