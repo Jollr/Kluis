@@ -6,7 +6,7 @@ var Dispatcher = function() {
 			.get(name, new Immutable.List())
 			.push(callback);
 			
-		subscriptions = subscriptions.merge(Immutable.Map({name: added}));
+		subscriptions = subscriptions.merge(Immutable.Map([[name, added]]));
 	};
 	
 	this.Publish = function(name, message) {
