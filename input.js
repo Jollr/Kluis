@@ -1,16 +1,16 @@
 ﻿var Input = function(dispatcher) {
 	var initialize = function() {
 		document.onkeydown = function(e) {
-			if (e.keyCode == 116) { // f5
+			if (e.keyCode == 116 || e.keyCode == 122) { // f5 of f11
 				return true;
 			}
 			
-			if (e.keyCode >= 96 && e.keyCode <= 105) {
+			if (e.keyCode >= 96 && e.keyCode <= 105) { // number
 				dispatcher.Publish('numberTyped', { number: e.keyCode - 96 });
 			}
 			
 			if (e.keyCode == 8) { // backspace
-				Dispatcher.Publish('backspace', { });
+				dispatcher.Publish('backspace', { });
 			}
 			
 			return false;
