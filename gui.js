@@ -12,19 +12,10 @@ var Gui = function(dispatcher) {
 	};
 
 	var onNumber = function(message) {
-		var update = function(n) {
-			$($('.digitBox')[n]).html(message.current.get(n));
-		};
-		Immutable.Range(0, numDigits).forEach(update);
+		$('#kluisDigits').html(message.current.reduce(function(x, y) {return 10*x + y;}));
 	};
 	
 	var initialize = function(message) {
-		numDigits = message.lengthOfCode;
-		var digitBox = "<div class='digitBox'></div>";
-		Immutable
-			.Repeat(digitBox, numDigits)
-			.forEach(function(x) { $('#kluis').append(x); });
-		
 		show('kluis');
 		dispatcher.Subscribe('Number', onNumber);
 	};

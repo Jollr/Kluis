@@ -9,6 +9,10 @@
 				dispatcher.Publish('NumberTyped', { number: e.keyCode - 48 });
 			}
 			
+			if (e.keyCode >= 96 && e.keyCode <= 105) { // numpad
+				dispatcher.Publish('NumberTyped', { number: e.keyCode - 96 });
+			}
+			
 			if (e.keyCode == 8) { // backspace
 				dispatcher.Publish('Backspace', { });
 			}

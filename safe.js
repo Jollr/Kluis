@@ -22,7 +22,11 @@ var SafeDigit = function(prev, count) {
 	};
 	
 	this.GetValues = function() {
-		return next.GetValues().splice(0, 0, value);
+		if (value != null) {
+			return next.GetValues().splice(0, 0, value);
+		} else {
+			return Immutable.List();
+		}
 	};
 };
 
