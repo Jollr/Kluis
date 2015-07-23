@@ -1,9 +1,13 @@
 var NullDigit = function(prev) {
-	this.Push = function(number) { };
+	this.Pop = function() { return false; };
+	this.PopBack = function() { return false; };
+	this.Push = function(number) { return false; };
+	this.GetLast = function() { return prev; }
 	this.GetValues = function() {return Immutable.List(); }
 };
 
 var SafeDigit = function(prev, count) {
+	var me = this;
 	var value = null;
 	var next = null;
 	
@@ -16,10 +20,26 @@ var SafeDigit = function(prev, count) {
 	this.Push = function(number) {
 		if (value == null) {
 			value = number;
+			return true;
 		} else {
-			next.Push(number);
+			return next.Push(number);
 		}
 	};
+	
+	this.Pop = function() {
+		return me.GetLast().PopBack();
+	};
+	
+	this.PopBack = function() {
+		if (value != null) {
+			value = null;
+			return true;
+		} else {
+			return prev.PopBack();
+		}
+	};
+	
+	this.GetLast = function() { return next.GetLast(); };
 	
 	this.GetValues = function() {
 		if (value != null) {
@@ -34,13 +54,17 @@ var Safe = function(dispatcher) {
 	var digits;
 	
 	var numberTyped = function(message) {
-		digits.Push(message.number);
-		dispatcher.Publish('Number', {current: digits.GetValues()});
+		if (digits.Push(message.number)) { dispatcher.Publish('SafeUpdate', {current: digits.GetValues()}); }
+	};
+	
+	var backspace = function(message) {
+		if (digits.Pop()) { dispatcher.Publish('SafeUpdate', { current: digits.GetValues()}); }
 	};
 	
 	var initialize = function(message) {
-		digits = new SafeDigit(null, message.lengthOfCode); 
+		digits = new SafeDigit(new NullDigit(null), message.lengthOfCode); 
 		dispatcher.Subscribe('NumberTyped', numberTyped);
+		dispatcher.Subscribe('Backspace', backspace);
 	};
 	
 	dispatcher.Subscribe('Initialize', initialize);

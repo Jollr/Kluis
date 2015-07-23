@@ -16,13 +16,15 @@ var Gui = function(dispatcher) {
 		window.setTimeout(function() {$('#digitButton-' + message.number).removeClass('pressed');}, 200)
 	};
 	
-	var onNumber = function(message) {
-		$('#kluisDigits').html(message.current.reduce(function(x, y) {return 10*x + y;}));
+	var onSafeUpdate = function(message) {
+		var reduced = message.current.reduce(function(x, y) {return 10*x + y;});
+		if (!reduced) { reduced = ''; }
+		$('#kluisDigits').html(reduced);		
 	};
 	
 	var initialize = function(message) {
 		show('kluis');
-		dispatcher.Subscribe('Number', onNumber);
+		dispatcher.Subscribe('SafeUpdate', onSafeUpdate);
 		dispatcher.Subscribe('NumberTyped', onNumberTyped);
 	};
 	
