@@ -28,7 +28,7 @@ body {
 .kluis .digitButtons .digitButton {
 	position: absolute;
 	width: 31px;
-	height: 19px;
+	height: 18px;
 }
 
 .kluis .digitButtons .digitButton.pressed {

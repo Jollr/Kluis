@@ -11,6 +11,11 @@ var Gui = function(dispatcher) {
 		elements.get(elem).show();
 	};
 
+	var onNumberTyped = function(message) {
+		$('#digitButton-' + message.number).addClass('pressed');
+		window.setTimeout(function() {$('#digitButton-' + message.number).removeClass('pressed');}, 200)
+	};
+	
 	var onNumber = function(message) {
 		$('#kluisDigits').html(message.current.reduce(function(x, y) {return 10*x + y;}));
 	};
@@ -18,9 +23,9 @@ var Gui = function(dispatcher) {
 	var initialize = function(message) {
 		show('kluis');
 		dispatcher.Subscribe('Number', onNumber);
+		dispatcher.Subscribe('NumberTyped', onNumberTyped);
 	};
 	
 	hideAll();
 	dispatcher.Subscribe('Initialize', initialize);
-	
 };
