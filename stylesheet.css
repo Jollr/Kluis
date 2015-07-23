@@ -19,6 +19,32 @@ body {
 	font-size: 20px;
 }
 
+.kluis .digitButtons {
+	position: relative;
+	top: 458px;
+	left: 375px;
+}
+
+.kluis .digitButtons .digitButton {
+	position: absolute;
+	width: 31px;
+	height: 19px;
+}
+
+.kluis .digitButtons .digitButton.pressed {
+	border-style: solid;
+	border-color: orange;
+}
+
+.kluis .digitButtons .digitButton.left { left: 4px;}
+.kluis .digitButtons .digitButton.center { left: 37px;}
+.kluis .digitButtons .digitButton.right{ left: 71px;}
+
+.kluis .digitButtons .digitButton.top { top: 4px;}
+.kluis .digitButtons .digitButton.mid { top: 25px;}
+.kluis .digitButtons .digitButton.bot { top: 46px;}
+.kluis .digitButtons .digitButton.jungle { top: 67px;}
+
 .digitBox {
 	width: 200px;
 	height: 200px;
