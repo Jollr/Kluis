@@ -1,13 +1,20 @@
 body {
 	font-family: calibri;
 	font-size: 60px;
-	
 }
 
 .kluis {
-	background-image: url('Background.jpg');
-	width: 1920px;
-	height: 1080px;
+	background: black;
+	width: 1366;
+	height: 768px;
+}
+
+.kluis .kluisWrapper {
+	margin-left: 203px;
+	margin-right: 203px;
+	width: 960px;
+	height: 768px;
+	background-image: url('Kluis Dicht.png');
 }
 
 .kluis .kluisDigits {
