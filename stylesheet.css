@@ -17,22 +17,32 @@ body {
 	background-image: url('Kluis Dicht.png');
 }
 
-.kluis .kluisDigits {
-	position: absolute;
-	top: 430px;
-	left: 390px;
+.kluis .kluisWrapper .kluisDigits {
+	position: relative;
+	padding-left: 4px;
+	height: 30px;
+	width: 88px;
+	top: 295px;
+	left: 30px;
 	font-family: courier new;
 	color: orange;
+	border-style: solid;
+	border-color: #333333;
 	font-size: 20px;
 }
 
-.kluis .digitButtons {
+.kluis .kluisWrapper .digitButtons {
 	position: relative;
-	top: 458px;
-	left: 375px;
+	top: 300px;
+	left: 20px;
+	width: 96px;
+	height: 119px;
 }
 
 .kluis .digitButtons .digitButton {
+	background: grey;
+	border-style: solid;
+	border-color: #333333;
 	position: absolute;
 	width: 31px;
 	height: 18px;
