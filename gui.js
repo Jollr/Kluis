@@ -24,7 +24,16 @@ var Gui = function(dispatcher) {
 	
 	var onSolved = function(message) {
 		show('solved');
-		$('#open-image').attr('src','kluis openen.gif');
+		$('#open-image').hide();
+		$('#open-animation').show();
+		$('#open-animation').attr('src','kluis openen.gif');
+
+		var flip = function() {
+			$('#open-image').show();
+			$('#open-animation').hide();
+		};
+
+		window.setTimeout(flip, 5100);
 	};
 
 	var onWrongSolution = function(message) {

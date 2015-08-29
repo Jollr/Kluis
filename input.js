@@ -16,6 +16,10 @@
 			if (e.keyCode == 8) { // backspace
 				dispatcher.Publish('Backspace', { });
 			}
+
+			if (e.keyCode == 13) { // enter
+				dispatcher.Publish('Submit', { });
+			}
 			
 			return false;
 		};
