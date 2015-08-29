@@ -24,27 +24,21 @@ var Gui = function(dispatcher) {
 	
 	var onSolved = function(message) {
 		show('solved');
-		
-		// var randomString = function() {
-			// var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-			// var string_length = 8;
-			// var randomstring = '';
-			// for (var i=0; i<string_length; i++) {
-				// var rnum = Math.floor(Math.random() * chars.length);
-				// randomstring += chars.substring(rnum,rnum+1);
-			// }
-			// document.randform.randomfield.value = randomstring;
-		// }
-		
-		//$('#open-image').attr('src','img/kluis openen.gif?x=' + randomString())
 		$('#open-image').attr('src','kluis openen.gif');
+	};
+
+	var initSubmit = function() {
+		var submit = function() {
+			dispatcher.Publish('Submit', {});
+		};
+		$('#open-button').click(submit);
 	};
 	
 	var initialize = function(message) {
 		show('kluis');
+		initSubmit();
 		dispatcher.Subscribe('SafeUpdate', onSafeUpdate);
 		dispatcher.Subscribe('NumberTyped', onNumberTyped);
-		dispatcher.Subscribe('Backspace', onSolved);
 	};
 	
 	hideAll();

@@ -4,6 +4,7 @@ var NullDigit = function(prev) {
 	this.Push = function(number) { return false; };
 	this.GetLast = function() { return prev; }
 	this.GetValues = function() {return Immutable.List(); }
+	this.IsCodeCorrect = function(code) {return code.length == 0;}
 };
 
 var SafeDigit = function(prev, count) {
@@ -48,10 +49,17 @@ var SafeDigit = function(prev, count) {
 			return Immutable.List();
 		}
 	};
+
+	this.IsCodeCorrect = function(code) {
+		if (code.length == 0) { return false; }
+		if (value == null) { return false; }
+		if (value == code[0]) { return next.IsCodeCorrect(code.substring(1, code.length - 1)); }
+	};
 };
 
 var Safe = function(dispatcher) {
 	var digits;
+	var code;
 	
 	var numberTyped = function(message) {
 		if (digits.Push(message.number)) { dispatcher.Publish('SafeUpdate', {current: digits.GetValues()}); }
@@ -62,9 +70,10 @@ var Safe = function(dispatcher) {
 	};
 	
 	var initialize = function(message) {
-		digits = new SafeDigit(new NullDigit(null), message.lengthOfCode); 
+		digits = new SafeDigit(new NullDigit(null), message.code.length); 
 		dispatcher.Subscribe('NumberTyped', numberTyped);
 		dispatcher.Subscribe('Backspace', backspace);
+		code = message.code;
 	};
 	
 	dispatcher.Subscribe('Initialize', initialize);
