@@ -39,6 +39,25 @@ body {
 	height: 119px;
 }
 
+.kluis .kluisWrapper .openButtonWrapper {
+	position: relative;
+	left: 24px;
+	top: 280px;
+	width: 100px;
+	background: grey;
+	border-style: solid;
+	border-color: #333333;
+	font-family: courier new;
+	color: orange;
+	font-size: 30px;
+}
+
+.kluis .kluisWrapper .openButtonWrapper input {
+	width: 94px;
+	background: grey;
+	border: none; 
+}
+
 .kluis .digitButtons .digitButton {
 	background: grey;
 	border-style: solid;
