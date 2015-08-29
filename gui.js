@@ -1,5 +1,5 @@
 var Gui = function(dispatcher) {
-	var elements = Immutable.Map([['start', $('#start')], ['kluis', $('#kluis')], ['solved', $('#kluis-open')]]);
+	var elements = Immutable.Map([['start', $('#start')], ['kluis', $('#kluis')], ['wrong', $('#explosie')], ['solved', $('#kluis-open')]]);
 	var numDigits = 0;
 	
 	var hideAll = function() {
@@ -27,6 +27,10 @@ var Gui = function(dispatcher) {
 		$('#open-image').attr('src','kluis openen.gif');
 	};
 
+	var onWrongSolution = function(message) {
+		show('wrong');
+	};
+
 	var initSubmit = function() {
 		var submit = function() {
 			dispatcher.Publish('Submit', {});
@@ -39,6 +43,8 @@ var Gui = function(dispatcher) {
 		initSubmit();
 		dispatcher.Subscribe('SafeUpdate', onSafeUpdate);
 		dispatcher.Subscribe('NumberTyped', onNumberTyped);
+		dispatcher.Subscribe('Solved', onSolved);
+		dispatcher.Subscribe('WrongSolution', onWrongSolution);
 	};
 	
 	hideAll();

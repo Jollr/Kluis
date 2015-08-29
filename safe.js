@@ -53,7 +53,8 @@ var SafeDigit = function(prev, count) {
 	this.IsCodeCorrect = function(code) {
 		if (code.length == 0) { return false; }
 		if (value == null) { return false; }
-		if (value == code[0]) { return next.IsCodeCorrect(code.substring(1, code.length - 1)); }
+		if (value == code[0]) { return next.IsCodeCorrect(code.substring(1, code.length)); }
+		return false;
 	};
 };
 
@@ -68,11 +69,20 @@ var Safe = function(dispatcher) {
 	var backspace = function(message) {
 		if (digits.Pop()) { dispatcher.Publish('SafeUpdate', { current: digits.GetValues()}); }
 	};
+
+	var onSubmit = function(message) {
+		if (digits.IsCodeCorrect(code)) {
+			dispatcher.Publish('Solved', {});
+		} else {
+			dispatcher.Publish('WrongSolution', {});
+		}
+	};
 	
 	var initialize = function(message) {
 		digits = new SafeDigit(new NullDigit(null), message.code.length); 
 		dispatcher.Subscribe('NumberTyped', numberTyped);
 		dispatcher.Subscribe('Backspace', backspace);
+		dispatcher.Subscribe('Submit', onSubmit);
 		code = message.code;
 	};
 	
