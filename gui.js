@@ -49,6 +49,7 @@ var Gui = function(dispatcher) {
 
 	var showPhoto = function(message) {
 		show('photos');
+		$('#photo-image').attr('src', message.counter + '.png');
 	};
 	
 	var endPhotos = function(message) {

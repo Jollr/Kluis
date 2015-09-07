@@ -9,9 +9,9 @@ var Photos = function(dispatcher) {
 	};
 
 	var showPhotos = function () {
-		var counter = 0;
+		var counter = 1;
 		var instanceInterval;
-		dispatcher.Publish('ShowPhoto', {counter: 0});
+		dispatcher.Publish('ShowPhoto', {counter: counter});
 
 		var onTrigger = function() {
 			if (counter < code.length) {
