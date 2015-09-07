@@ -1,6 +1,11 @@
 ﻿var Input = function(dispatcher) {
 	var initialize = function() {
 		document.onkeydown = function(e) {
+
+			if (e.ctrlKey && e.shiftKey && e.keyCode == 32) { // ctrl + shift + spatiebalk
+				dispatcher.Publish('MagicHotkey', {});
+			}
+
 			if (e.keyCode === 116 || e.keyCode === 122) { // f5, f11
 				return true;
 			}
