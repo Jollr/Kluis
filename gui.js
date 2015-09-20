@@ -38,6 +38,13 @@ var Gui = function(dispatcher) {
 
 	var onWrongSolution = function(message) {
 		show('wrong');
+		$('#explosie-image').attr('src', 'BOEM.gif');
+
+		var hideExplosion = function() {
+			hideAll();
+		};
+
+		window.setTimeout(hideExplosion, 3950);
 	};
 
 	var initSubmit = function() {
