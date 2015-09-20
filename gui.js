@@ -33,7 +33,7 @@ var Gui = function(dispatcher) {
 			$('#open-animation').hide();
 		};
 
-		window.setTimeout(flip, 5100);
+		window.setTimeout(flip, 4800);
 	};
 
 	var onWrongSolution = function(message) {
